@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Gemin Patel']
   spec.email         = ['gemin.patel61@gmail.com']
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = %q{TODO: Put your gem's website or public repo URL here.}
+  spec.summary       = %q{Intercept any ruby object}
+  spec.description   = %q{Intercept any ruby object}
+  spec.homepage      = %q{https://github.com/GeminPatel/intercept}
   spec.license       = 'MIT'
 
   # Specify which files should be added to the gem when it is released.

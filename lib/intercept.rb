@@ -1,5 +1,6 @@
-require "intercept/version"
+require 'intercept/version'
+require 'intercept/builder'
 
 module Intercept
-  # Your code goes here...
+
 end
