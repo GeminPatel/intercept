@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'intercept/strategy/replace'
 require 'intercept/strategy/mapper'
 require 'intercept/strategy/white_list'

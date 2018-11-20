@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Intercept
   module Strategy
     class WhiteList
