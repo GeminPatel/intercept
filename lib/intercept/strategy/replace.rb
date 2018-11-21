@@ -6,7 +6,7 @@ module Intercept
       attr_reader :replace_identities
 
       def initialize(replace_identities)
-        @replace_identities = replace_identities
+        @replace_identities = replace_identities.dup
       end
 
       def process_identities(identities)

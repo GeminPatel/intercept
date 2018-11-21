@@ -6,7 +6,7 @@ module Intercept
       attr_reader :white_list, :fallback_strategy
 
       def initialize(white_list, fallback_strategy = nil)
-        @white_list = white_list
+        @white_list = parse_white_list white_list
         @fallback_strategy = fallback_strategy
       end
 
@@ -24,10 +24,22 @@ module Intercept
 
       private
 
+      def parse_white_list(white_list)
+        white_list.map do |entity|
+          if String === entity
+            Regexp.new entity
+          elsif Regexp === entity
+            entity
+          else
+            raise '@param white_list elements must be [String, Regexp]'
+          end
+        end
+      end
+
       def white_list_identities(identities)
         identities.select do |identity|
           white_list.find do |regex|
-            Regexp.new(regex).match?(identity)
+            regex.match?(identity)
           end
         end.compact.uniq
       end
