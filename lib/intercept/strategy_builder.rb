@@ -2,17 +2,14 @@
 
 module Intercept
   class StrategyBuilder
-    def self.from_hash(hash)
-      return unless hash
-
-      strategy = hash[:strategy]
+    def self.from_hash(strategy)
+      return unless strategy
       strategy_class = get_class(strategy[:name])
-      properties = strategy[:properties]
 
-      if fallback = Intercept::StrategyBuilder.from_hash(properties[:fallback])
-        strategy_class.new(properties[:args], fallback)
+      if fallback = Intercept::StrategyBuilder.from_hash(strategy[:fallback])
+        strategy_class.new(strategy[:args], fallback)
       else
-        strategy_class.new(properties[:args])
+        strategy_class.new(strategy[:args])
       end
     end
 

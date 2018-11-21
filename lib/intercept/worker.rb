@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'strategy_builder'
+require 'intercept/strategy_builder'
 require 'intercept/strategy/replace'
 require 'intercept/strategy/mapper'
 require 'intercept/strategy/white_list'
