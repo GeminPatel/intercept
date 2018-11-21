@@ -11,7 +11,7 @@ module Intercept
       end
 
       def process(value)
-        return value if value.blank?
+        return value if value.nil? || value.empty?
 
         mapped_value = map_value(value)
 
@@ -40,7 +40,7 @@ module Intercept
         value.map do |unit|
           bucket_map.find do |bucket, _|
             bucket.match?(unit)
-          end&.second
+          end&.fetch(1)
         end.compact.uniq
       end
     end

@@ -11,7 +11,7 @@ module Intercept
       end
 
       def process(value)
-        return value if value.blank?
+        return value if value.nil? || value.empty?
 
         white_listed_value = white_list_value(value)
 
@@ -23,7 +23,7 @@ module Intercept
       end
 
       private
-
+      
       def parse_white_list(white_list)
         white_list.map do |entity|
           if String === entity

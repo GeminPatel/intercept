@@ -10,7 +10,7 @@ module Intercept
       end
 
       def process(value)
-        if value.blank?
+        if value.nil? || value.empty?
           value
         else
           replace_value

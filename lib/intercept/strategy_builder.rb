@@ -14,7 +14,7 @@ module Intercept
     end
 
     def self.get_class(symbol)
-      "Intercept::Strategy::#{symbol.to_s.classify}".constantize
+      Object.const_get "Intercept::Strategy::#{symbol.to_s.split('_').map{ |w| w.capitalize }.join}"
     end
   end
 end
