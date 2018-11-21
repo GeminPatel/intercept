@@ -10,15 +10,15 @@ module Intercept
         @fallback_strategy = fallback_strategy
       end
 
-      def process_identities(identities)
-        return [] if identities.blank?
+      def process(value)
+        return value if value.blank?
 
-        mapped_identities = map_identities(identities)
+        mapped_value = map_value(value)
 
-        if fallback_strategy && mapped_identities.empty?
-          fallback_strategy.process_identities(identities)
+        if fallback_strategy && mapped_value.empty?
+          fallback_strategy.process(value)
         else
-          mapped_identities
+          mapped_value
         end
       end
 
@@ -36,10 +36,10 @@ module Intercept
         end.to_h
       end
 
-      def map_identities(identities)
-        identities.map do |identity|
+      def map_value(value)
+        value.map do |unit|
           bucket_map.find do |bucket, _|
-            bucket.match?(identity)
+            bucket.match?(unit)
           end&.second
         end.compact.uniq
       end

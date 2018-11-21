@@ -3,17 +3,17 @@
 module Intercept
   module Strategy
     class Replace
-      attr_reader :replace_identities
+      attr_reader :replace_value
 
-      def initialize(replace_identities)
-        @replace_identities = replace_identities.dup
+      def initialize(replace_value)
+        @replace_value = replace_value.dup
       end
 
-      def process_identities(identities)
-        if identities.blank?
-          []
+      def process(value)
+        if value.blank?
+          value
         else
-          replace_identities
+          replace_value
         end
       end
     end

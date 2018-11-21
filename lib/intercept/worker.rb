@@ -29,7 +29,7 @@ module Intercept
     def intercept(message)
       interceptor_map.each do |field, strategy|
         if message.respond_to?(field) && message.respond_to?("#{field}=")
-          message.public_send("#{field}=", strategy.process_identities(message.public_send field))
+          message.public_send("#{field}=", strategy.process(message.public_send field))
         end
       end
 

@@ -10,15 +10,15 @@ module Intercept
         @fallback_strategy = fallback_strategy
       end
 
-      def process_identities(identities)
-        return [] if identities.blank?
+      def process(value)
+        return value if value.blank?
 
-        white_listed_identities = white_list_identities(identities)
+        white_listed_value = white_list_value(value)
 
-        if fallback_strategy && white_listed_identities.empty?
-          fallback_strategy.process_identities(identities)
+        if fallback_strategy && white_listed_value.empty?
+          fallback_strategy.process(value)
         else
-          white_listed_identities
+          white_listed_value
         end
       end
 
@@ -36,10 +36,10 @@ module Intercept
         end
       end
 
-      def white_list_identities(identities)
-        identities.select do |identity|
+      def white_list_value(value)
+        value.select do |unit|
           white_list.find do |regex|
-            regex.match?(identity)
+            regex.match?(unit)
           end
         end.compact.uniq
       end
