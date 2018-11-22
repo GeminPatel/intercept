@@ -25,20 +25,16 @@ module Intercept
       private
 
       def parse_bucket_map(bucket_map)
-        bucket_map.map do |k, v|
-          if String === k
-            [Regexp.new(k), v]
-          elsif Regexp === k
-            [k, v]
-          else
-            raise '@param bucket_map keys must be [String, Regexp]'
-          end
-        end.to_h
+        if bucket_map.respond_to?(:call)
+          bucket_map
+        else
+          raise '@param bucket_map must respond to #call'
+        end
       end
 
       def map_value(value)
         value.map do |unit|
-          bucket_map.find do |bucket, _|
+          bucket_map.call.find do |bucket, _|
             bucket.match?(unit)
           end&.fetch(1)
         end.compact.uniq

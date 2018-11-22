@@ -7,6 +7,10 @@ RSpec.describe Intercept do
     end
   end
 
+  let(:white_list) { Proc.new { [Regexp.new('^\\S+@me.in$'), Regexp.new('^\\S+@me.com$')] } }
+  let(:mapper) { Proc.new { { Regexp.new('^\\S+.g.p@you.com$') => 'g.p@you.in' } } }
+  let(:replace) { Proc.new { %w(g.p@me.in k.@me.in) } }
+
   let(:interceptor_description) {
     {
       interception: [
@@ -14,13 +18,13 @@ RSpec.describe Intercept do
           fields: [:to],
           strategy: {
             name: :white_list,
-            args: %w(^\\S+@me.in$ ^\\S+@me.com$),
+            args: white_list,
             fallback: {
               name: :mapper,
-              args: {'^\\S+.g.p@you.com$' => 'g.p@you.in'},
+              args: mapper,
               fallback: {
                 name: :replace,
-                args: %w(g.p@me.in k.@me.in)
+                args: replace
               }
             }
           }
@@ -29,10 +33,10 @@ RSpec.describe Intercept do
           fields: [:cc, :bcc],
           strategy: {
             name: :white_list,
-            args: %w(^\\S+@me.in$ ^\\S+@me.com$),
+            args: white_list,
             fallback: {
               name: :mapper,
-              args: {'^\\S+.g.p@you.com$'=>'g.p@you.in'}
+              args: mapper
             }
           }
         }

@@ -23,22 +23,18 @@ module Intercept
       end
 
       private
-      
+
       def parse_white_list(white_list)
-        white_list.map do |entity|
-          if String === entity
-            Regexp.new entity
-          elsif Regexp === entity
-            entity
-          else
-            raise '@param white_list elements must be [String, Regexp]'
-          end
+        if white_list.respond_to?(:call)
+          white_list
+        else
+          raise '@param white_list must respond to #call'
         end
       end
 
       def white_list_value(value)
         value.select do |unit|
-          white_list.find do |regex|
+          white_list.call.find do |regex|
             regex.match?(unit)
           end
         end.compact.uniq
