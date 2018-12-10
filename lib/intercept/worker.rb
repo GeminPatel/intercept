@@ -4,6 +4,8 @@ require 'intercept/strategy_builder'
 require 'intercept/strategy/replace'
 require 'intercept/strategy/mapper'
 require 'intercept/strategy/white_list'
+require 'intercept/decorator_builder'
+require 'intercept/decorator/add_suffix'
 
 module Intercept
   # Base class of the intercept module.
@@ -19,7 +21,7 @@ module Intercept
       @decorator_map = decorator_map
 
       if registration_method != 'intercept' && registration_method != :intercept
-        define_singleton_method(registration_method) { |message| delivering_message(message) }
+        define_singleton_method(registration_method) { |message| intercept(message) }
       end
     end
 
