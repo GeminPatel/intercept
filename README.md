@@ -1,5 +1,7 @@
 # Intercept
 
+[![Gem Version](https://badge.fury.io/rb/intercept.svg)](https://badge.fury.io/rb/intercept)  [![Maintainability](https://api.codeclimate.com/v1/badges/89e9e742466987d05bf4/maintainability)](https://codeclimate.com/github/GeminPatel/intercept/maintainability)
+
 Intercept and modify ruby objects with publisher-subscriber pattern
 
 ## Installation
