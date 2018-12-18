@@ -6,6 +6,7 @@ require 'intercept/strategy/mapper'
 require 'intercept/strategy/white_list'
 require 'intercept/decorator_builder'
 require 'intercept/decorator/add_suffix'
+require 'intercept/decorator/replace'
 
 module Intercept
   # Base class of the intercept module.

@@ -4,7 +4,7 @@ module Intercept
       attr_reader :suffix
 
       def initialize(suffix)
-        @suffix = suffix
+        @suffix = parse_suffix suffix
       end
 
       def decorate(value)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Intercept
-  module Strategy
+  module Decorator
     class Replace
       attr_reader :replace_value
 
@@ -9,12 +9,8 @@ module Intercept
         @replace_value = parse_replace_value replace_value
       end
 
-      def process(value)
-        if value.nil? || value.empty?
-          value
-        else
-          replace_value.call
-        end
+      def decorate(_)
+        replace_value.call
       end
 
       private
